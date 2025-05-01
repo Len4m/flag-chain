@@ -19,7 +19,7 @@
 
 Antes de comenzar, asegúrate de entender la arquitectura del proyecto:
 
-- [Libro Blanco](./Resumen_FlagChain_Libro_Blanco_Correcto.md)
+- [Libro Blanco](./RESUMEN-LIBRO-BLANCO.md)
 - Smart Contracts (Solidity)
 - SDK (TypeScript)
 - Frontend (Angular + Ethers.js)
@@ -78,8 +78,8 @@ Antes de enviar un PR:
 
 ## 💬 Canales de Soporte
 
-- [Issues](https://github.com/flagchain/issues)
-- [Discussions](https://github.com/flagchain/discussions)
+- [Issues](https://github.com/Len4m/flag-chain/issues)
+- [Discussions](https://github.com/Len4m/flag-chain/discussions)
 - Discord (proximamente)
 
 ---

@@ -32,7 +32,7 @@ Está en fase inicial de diseño y desarrollo. Todos los documentos, interfaces 
 ## 📬 Contacto
 
 Si deseas contribuir, hacer preguntas o dar feedback, puedes escribirme por **Discord: `LenamGenX`**.  
-También puedes usar la sección de [Issues](https://github.com/flagchain/issues) (cuando el repositorio sea público).
+También puedes usar la sección de [Issues](https://github.com/Len4m/flag-chain/issues) (cuando el repositorio sea público).
 
 ---
 
