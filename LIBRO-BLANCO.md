@@ -1,7 +1,7 @@
 **FlagChain: Libro Blanco Completo**
 
 **Autor:** Lenam
-**Fehca:** 27 abril 2025
+**Fecha:** 27 abril 2025
 **Versión:** 0.1
 
 # 1. Resumen Ejecutivo
@@ -13,7 +13,7 @@ FlagChain será una plataforma Web3 diseñada para unificar la gestión y resolu
 - **Fomentar la comunidad** a través de rankings de hackers y creadores, incentivando la calidad y la competencia saludable.
 - **Reducir costos** de infraestructura aprovechando redes EVM compatibles de bajo gas (Polygon, Arbitrum) e IPFS/Arweave para almacenamiento.
 
-FlagChain se construirá usando Solidity para la lógica on-chain, IPFS y Filecoin/Arweave para datos pesados, y un frontend en Angular + Ethers.js que podrá desplegarse en un gateway IPFS. Su diseño modular facilitará la escalabilidad, las futuras actualizaciones y las auditorías externas.
+FlagChain se construirá usando Solidity para la lógica on-chain, IPFS y Filecoin/Arweave para datos pesados, y un frontend en Next.js + Wagmi + Viem que podrá desplegarse en un gateway IPFS. Su diseño modular facilitará la escalabilidad, las futuras actualizaciones y las auditorías externas.
 
 # 2. Motivación y Oportunidad
 
@@ -46,11 +46,11 @@ FlagChain unificará retos y puntuaciones en una plataforma descentralizada, usa
 
 ## 4.1 Componentes Principales
 
-1. **Frontend (Angular) - Puerto 8080**
+1. **Frontend (Next.js) - Puerto 3000**
 
-   - Interfaz de usuario moderna en Angular 17
-   - Integración con MetaMask para autenticación
-   - Comunicación directa con contratos mediante ethers.js
+   - Interfaz de usuario moderna en Next.js 14
+   - Integración con múltiples wallets mediante Wagmi
+   - Comunicación directa con contratos mediante Viem
    - Sistema de gestión de estados para retos y puntuaciones
 
 2. **Blockchain (Hardhat Node) - Puerto 8545**
@@ -82,7 +82,7 @@ FlagChain unificará retos y puntuaciones en una plataforma descentralizada, usa
 
 ## 4.2 SDK JavaScript/TypeScript
 
-El SDK incluirá un **módulo de conexión de wallet** para facilitar la integración con MetaMask, WalletConnect y otros proveedores compatibles, basado en Ethers.js y Web3Modal:
+El SDK incluirá un **módulo de conexión de wallet** para facilitar la integración con MetaMask, WalletConnect y otros proveedores compatibles, basado en Wagmi y Viem:
 
 ```typescript
 // Configuración del SDK
@@ -191,7 +191,7 @@ Este SDK permitirá crear retos con flags de usuario y root, enviar flags de for
    Frontend -> The Graph (datos) -> IPFS (contenido)
    ```
 
-> **Nota**: Todos estos flujos podrán ejecutarse tanto a través de la interfaz web desarrollada en Angular + Ethers.js, como directamente mediante el SDK de FlagChain, o incluso de forma manual interactuando directamente con los contratos inteligentes, permitiendo la integración desde cualquier plataforma, lenguaje o herramienta compatible.
+> **Nota**: Todos estos flujos podrán ejecutarse tanto a través de la interfaz web desarrollada en Next.js + Wagmi + Viem, como directamente mediante el SDK de FlagChain, o incluso de forma manual interactuando directamente con los contratos inteligentes, permitiendo la integración desde cualquier plataforma, lenguaje o herramienta compatible.
 
 # 5. Tecnología y Criptografía
 
@@ -381,7 +381,7 @@ Con este mecanismo, **los nuevos participantes podrán interactuar con FlagChain
 
    - **Interna**:
 
-     - Pruebas unitarias (Hardhat, Waffle)
+     - Pruebas unitarias (Hardhat, Foundry)
      - Análisis estático (Slither, Mythril)
      - Fuzzing y pruebas de integración
 
@@ -438,7 +438,7 @@ Con este mecanismo, **los nuevos participantes podrán interactuar con FlagChain
      - Conexión al contrato (dirección y ABI).
      - Wrappers para `createChallenge()`, `submitFlag()`, `rateChallenge()`, `getChallenges()`, `getScores()`.
      - Utilidades para firmas y gestión de nonces.
-   - Documentación detallada en GitHub y ejemplos para Angular, React, Node.js, PHP.
+   - Documentación detallada en GitHub y ejemplos para Next.js, React, Node.js, PHP.
    - Versionado semántico para garantizar compatibilidad.
 
 # 11. Roadmap de Desarrollo
@@ -456,7 +456,7 @@ Nuestro enfoque prioriza la construcción en el siguiente orden inmutable: **1) 
 - Desarrollo e implementación del contrato `FlagChain.sol` en Solidity.
 - Emisión de eventos `ChallengeCreated`, `FlagCaptured` y `ChallengeRated`.
 - Diseño y publicación de la API pública del SDK basada en el ABI.
-- Pruebas unitarias y corrección de errores (Hardhat, Waffle).
+- Pruebas unitarias y corrección de errores (Hardhat, Foundry).
 
 **Fase 2: Desarrollo del SDK & Pruebas**
 
@@ -466,7 +466,7 @@ Nuestro enfoque prioriza la construcción en el siguiente orden inmutable: **1) 
 
 **Fase 3: Desarrollo del Frontend MVP**
 
-- Construcción de la DApp en Angular + Ethers.js consumiendo el SDK.
+- Construcción de la DApp en Next.js + Wagmi + Viem consumiendo el SDK.
 - Funcionalidades básicas: listado de retos, detalle de reto, envío de flags y visualización de ranking.
 - Pruebas end-to-end y despliegue estático en IPFS/Arweave o servidor tradicional.
 

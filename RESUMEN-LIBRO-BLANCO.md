@@ -43,7 +43,7 @@ FlagChain será una plataforma Web3 para gestionar CTFs de forma descentralizada
 
 ## 4. 🏗️ Arquitectura
 
-- **Frontend** en Angular + Ethers.js.
+- **Frontend** en Next.js + Wagmi + Viem.
 - **Smart contracts** en Solidity sobre redes EVM.
 - **Almacenamiento** en IPFS/Filecoin/Arweave.
 - **Indexación** vía The Graph.
