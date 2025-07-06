@@ -1,0 +1,279 @@
+# =============================================================================
+# FlagChain Project - Complete .gitignore
+# =============================================================================
+
+# ========================
+# Dependencies & Packages
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+# Yarn files (ignore entire .yarn directory)
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# ========================
+# Environment Variables
+# ========================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+
+# Private keys (NEVER commit these!)
+*.key
+*.pem
+private-keys.txt
+mnemonic.txt
+
+# ========================
+# Next.js Frontend
+# ========================
+.next/
+out/
+build/
+dist/
+.vercel
+.turbo
+*.tsbuildinfo
+next-env.d.ts
+
+# ========================
+# Hardhat Blockchain
+# ========================
+cache/
+artifacts/
+typechain/
+typechain-types/
+coverage/
+coverage.json
+artifacts-zk/
+cache-zk/
+
+# Deployment files (keep only templates)
+deployments/localhost/
+deployments/hardhat/
+deployments/31337/
+
+# Gas reports
+gas-report.txt
+
+# ========================
+# Testing & Coverage
+# ========================
+coverage/
+.nyc_output/
+*.lcov
+junit.xml
+test-results/
+
+# ========================
+# Build & Compilation
+# ========================
+build/
+dist/
+out/
+lib/
+*.d.ts.map
+
+# ========================
+# IDE & Editor Files
+# ========================
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ========================
+# Operating System Files
+# ========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ========================
+# Logs & Debug Files
+# ========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ========================
+# Temporary Files
+# ========================
+tmp/
+temp/
+.tmp/
+.temp/
+*.tmp
+*.temp
+
+# ========================
+# IPFS & Storage
+# ========================
+ipfs-upload.config.json
+.ipfs/
+ipfs-data/
+pinata-config.json
+
+# ========================
+# The Graph Indexing
+# ========================
+subgraph/build/
+subgraph/generated/
+graph-config.json
+
+# ========================
+# Deployment & CI/CD
+# ========================
+.terraform/
+terraform.tfstate*
+.aws/
+.gcp/
+deployment-config.json
+infrastructure/
+
+# ========================
+# Security & Audit
+# ========================
+audit-results/
+security-report.json
+slither-report.json
+
+# ========================
+# Documentation Build
+# ========================
+docs/build/
+docs/dist/
+site/
+
+# ========================
+# Database & Cache
+# ========================
+*.sqlite
+*.db
+*.sqlite3
+.cache/
+.parcel-cache/
+
+# ========================
+# Monitoring & Analytics
+# ========================
+newrelic.js
+.newrelic/
+
+# ========================
+# Package Manager Locks
+# ========================
+# Keep yarn.lock but ignore others
+package-lock.json
+pnpm-lock.yaml
+shrinkwrap.yaml
+
+# ========================
+# Backup & Archive Files
+# ========================
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*.archive
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ========================
+# Local Development
+# ========================
+local-config.json
+dev-config.json
+.local/
+.dev/
+
+# ========================
+# Blockchain Specific
+# ========================
+# Ganache
+ganache-config.json
+ganache-db/
+
+# MetaMask
+metamask-config.json
+
+# Wallet files
+wallet.json
+keystore/
+
+# ========================
+# Code Analysis
+# ========================
+.eslintcache
+.stylelintcache
+.solhint-cache
+
+# ========================
+# Performance
+# ========================
+.benchmark/
+performance-results/
+
+# ========================
+# Custom Project Files
+# ========================
+# Add any specific files for FlagChain project
+flag-submissions/
+private-challenges/
+test-flags/
+local-challenges/
+
+# ========================
+# End of .gitignore
+# ======================== 
