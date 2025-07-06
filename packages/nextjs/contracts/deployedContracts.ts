@@ -6,59 +6,353 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
 const deployedContracts = {
   31337: {
-    YourContract: {
+    FlagChain: {
       address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "AccessControlBadConfirmation",
+          type: "error",
+        },
         {
           inputs: [
             {
               internalType: "address",
-              name: "_owner",
+              name: "account",
               type: "address",
             },
+            {
+              internalType: "bytes32",
+              name: "neededRole",
+              type: "bytes32",
+            },
           ],
-          stateMutability: "nonpayable",
-          type: "constructor",
+          name: "AccessControlUnauthorizedAccount",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ECDSAInvalidSignature",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "length",
+              type: "uint256",
+            },
+          ],
+          name: "ECDSAInvalidSignatureLength",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "s",
+              type: "bytes32",
+            },
+          ],
+          name: "ECDSAInvalidSignatureS",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "EnforcedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ExpectedPause",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "ReentrancyGuardReentrantCall",
+          type: "error",
         },
         {
           anonymous: false,
           inputs: [
             {
               indexed: true,
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
               internalType: "address",
-              name: "greetingSetter",
+              name: "creator",
               type: "address",
             },
             {
               indexed: false,
               internalType: "string",
-              name: "newGreeting",
+              name: "ipfsCID",
               type: "string",
             },
             {
               indexed: false,
+              internalType: "enum FlagChain.Difficulty",
+              name: "difficulty",
+              type: "uint8",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "basePoints",
+              type: "uint256",
+            },
+          ],
+          name: "ChallengeCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "rater",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint8",
+              name: "stars",
+              type: "uint8",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "newAverageRating",
+              type: "uint256",
+            },
+          ],
+          name: "ChallengeRated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
               internalType: "bool",
-              name: "premium",
+              name: "active",
+              type: "bool",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "changedBy",
+              type: "address",
+            },
+          ],
+          name: "ChallengeStatusChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "voter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "enum FlagChain.Difficulty",
+              name: "newDifficulty",
+              type: "uint8",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "newBasePoints",
+              type: "uint256",
+            },
+          ],
+          name: "DifficultyVoted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "solver",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "enum FlagChain.FlagLevel",
+              name: "level",
+              type: "uint8",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "points",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "bool",
+              name: "isFirstBlood",
               type: "bool",
             },
             {
               indexed: false,
               internalType: "uint256",
-              name: "value",
+              name: "timestamp",
               type: "uint256",
             },
           ],
-          name: "GreetingChange",
+          name: "FlagCaptured",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Paused",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "previousAdminRole",
+              type: "bytes32",
+            },
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "newAdminRole",
+              type: "bytes32",
+            },
+          ],
+          name: "RoleAdminChanged",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "RoleGranted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "RoleRevoked",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "Unpaused",
           type: "event",
         },
         {
           inputs: [],
-          name: "greeting",
+          name: "COOLDOWN_PERIOD",
           outputs: [
             {
-              internalType: "string",
+              internalType: "uint256",
               name: "",
-              type: "string",
+              type: "uint256",
             },
           ],
           stateMutability: "view",
@@ -66,50 +360,321 @@ const deployedContracts = {
         },
         {
           inputs: [],
-          name: "owner",
+          name: "CREATOR_ROLE",
           outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "DEFAULT_ADMIN_ROLE",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "EASY_POINTS",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "FIRST_BLOOD_BONUS",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "HARD_POINTS",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MAX_ATTEMPTS_PER_CHALLENGE",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MAX_CHALLENGES_PER_USER",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MAX_POINTS_PER_CHALLENGE",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MEDIUM_POINTS",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "OPERATOR_ROLE",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "PAUSER_ROLE",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "activeChallenges",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "allRatings",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "allSolves",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
             {
               internalType: "address",
               name: "",
               type: "address",
             },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "attemptsByUserAndChallenge",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
           ],
           stateMutability: "view",
           type: "function",
         },
         {
-          inputs: [],
-          name: "premium",
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "challenges",
           outputs: [
+            {
+              internalType: "uint256",
+              name: "id",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "ipfsCID",
+              type: "string",
+            },
+            {
+              internalType: "enum FlagChain.Difficulty",
+              name: "difficulty",
+              type: "uint8",
+            },
+            {
+              internalType: "bytes",
+              name: "publicKeyUser",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "publicKeyRoot",
+              type: "bytes",
+            },
             {
               internalType: "bool",
-              name: "",
+              name: "active",
               type: "bool",
             },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "string",
-              name: "_newGreeting",
-              type: "string",
-            },
-          ],
-          name: "setGreeting",
-          outputs: [],
-          stateMutability: "payable",
-          type: "function",
-        },
-        {
-          inputs: [],
-          name: "totalCounter",
-          outputs: [
             {
               internalType: "uint256",
-              name: "",
+              name: "createdAt",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "basePoints",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "userSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "rootSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "hasFirstBloodUser",
+              type: "bool",
+            },
+            {
+              internalType: "bool",
+              name: "hasFirstBloodRoot",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "totalRatings",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "sumRatings",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "averageRating",
               type: "uint256",
             },
           ],
@@ -124,7 +689,7 @@ const deployedContracts = {
               type: "address",
             },
           ],
-          name: "userGreetingCounter",
+          name: "challengesCreatedByUser",
           outputs: [
             {
               internalType: "uint256",
@@ -136,18 +701,874 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
-          name: "withdraw",
+          inputs: [
+            {
+              internalType: "string",
+              name: "ipfsCID",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "publicKeyUser",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "publicKeyRoot",
+              type: "bytes",
+            },
+            {
+              internalType: "enum FlagChain.Difficulty",
+              name: "difficulty",
+              type: "uint8",
+            },
+          ],
+          name: "createChallenge",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
         {
-          stateMutability: "payable",
-          type: "receive",
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+          ],
+          name: "emergencyResetAttempts",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "newIpfsCID",
+              type: "string",
+            },
+          ],
+          name: "emergencyUpdateChallenge",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getActiveChallenges",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+          ],
+          name: "getChallenge",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "id",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "creator",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "ipfsCID",
+                  type: "string",
+                },
+                {
+                  internalType: "enum FlagChain.Difficulty",
+                  name: "difficulty",
+                  type: "uint8",
+                },
+                {
+                  internalType: "bytes",
+                  name: "publicKeyUser",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bytes",
+                  name: "publicKeyRoot",
+                  type: "bytes",
+                },
+                {
+                  internalType: "bool",
+                  name: "active",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "createdAt",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "basePoints",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "userSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "rootSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "hasFirstBloodUser",
+                  type: "bool",
+                },
+                {
+                  internalType: "bool",
+                  name: "hasFirstBloodRoot",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalRatings",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "sumRatings",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "averageRating",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FlagChain.Challenge",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+          ],
+          name: "getChallengesByCreator",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getLeaderboard",
+          outputs: [
+            {
+              internalType: "address[]",
+              name: "",
+              type: "address[]",
+            },
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+          ],
+          name: "getRoleAdmin",
+          outputs: [
+            {
+              internalType: "bytes32",
+              name: "",
+              type: "bytes32",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getTotalChallenges",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getTotalSolves",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "getUserStats",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "uint256",
+                  name: "totalScore",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "userSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "rootSolves",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "challengesCreated",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "averageRating",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "lastActivity",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "consecutiveSolves",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct FlagChain.UserStats",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "grantCreatorRole",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "grantRole",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "hasRole",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "hasUserRatedChallenge",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+          ],
+          name: "hasUserSolved",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "hasUserSolvedChallenge",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "enum FlagChain.FlagLevel",
+              name: "level",
+              type: "uint8",
+            },
+          ],
+          name: "hasUserSolvedChallengeLevel",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "hasUserSolvedLevel",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "lastAttemptByUserAndChallenge",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "pause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "paused",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint8",
+              name: "stars",
+              type: "uint8",
+            },
+          ],
+          name: "rateChallenge",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "ratings",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "rater",
+              type: "address",
+            },
+            {
+              internalType: "uint8",
+              name: "stars",
+              type: "uint8",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              internalType: "address",
+              name: "callerConfirmation",
+              type: "address",
+            },
+          ],
+          name: "renounceRole",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "revokeCreatorRole",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "role",
+              type: "bytes32",
+            },
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "revokeRole",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "solves",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "solver",
+              type: "address",
+            },
+            {
+              internalType: "enum FlagChain.FlagLevel",
+              name: "level",
+              type: "uint8",
+            },
+            {
+              internalType: "uint256",
+              name: "timestamp",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "points",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isFirstBlood",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes",
+              name: "signature",
+              type: "bytes",
+            },
+            {
+              internalType: "enum FlagChain.FlagLevel",
+              name: "level",
+              type: "uint8",
+            },
+          ],
+          name: "submitFlag",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes4",
+              name: "interfaceId",
+              type: "bytes4",
+            },
+          ],
+          name: "supportsInterface",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "active",
+              type: "bool",
+            },
+          ],
+          name: "toggleChallenge",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "unpause",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userNonces",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "userStats",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "totalScore",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "totalSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "userSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "rootSolves",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "challengesCreated",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "averageRating",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "lastActivity",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "consecutiveSolves",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "challengeId",
+              type: "uint256",
+            },
+            {
+              internalType: "enum FlagChain.Difficulty",
+              name: "newDifficulty",
+              type: "uint8",
+            },
+          ],
+          name: "voteDifficulty",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
         },
       ],
-      inheritedFunctions: {},
+      inheritedFunctions: {
+        paused: "@openzeppelin/contracts/utils/Pausable.sol",
+        DEFAULT_ADMIN_ROLE: "@openzeppelin/contracts/access/AccessControl.sol",
+        getRoleAdmin: "@openzeppelin/contracts/access/AccessControl.sol",
+        grantRole: "@openzeppelin/contracts/access/AccessControl.sol",
+        hasRole: "@openzeppelin/contracts/access/AccessControl.sol",
+        renounceRole: "@openzeppelin/contracts/access/AccessControl.sol",
+        revokeRole: "@openzeppelin/contracts/access/AccessControl.sol",
+        supportsInterface: "@openzeppelin/contracts/access/AccessControl.sol",
+      },
     },
   },
 } as const;

@@ -17,7 +17,8 @@ const wallets = [
   metaMaskWallet,
   walletConnectWallet,
   ledgerWallet,
-  coinbaseWallet,
+  // Solo incluir coinbaseWallet en producción para evitar warnings CORS en desarrollo
+  ...(process.env.NODE_ENV === "production" ? [coinbaseWallet] : []),
   rainbowWallet,
   safeWallet,
   ...(!targetNetworks.some(network => network.id !== (chains.hardhat as chains.Chain).id) || !onlyLocalBurnerWallet
