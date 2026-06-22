@@ -1,5 +1,13 @@
 # 🚩 FlagChain (versión temprana) / FlagChain (Early Version)
 
+> **⚠️ Proyecto discontinuado / Project discontinued**
+>
+> **🇪🇸 Español:** Este proyecto no continuará. FlagChain pretendía englobar **todas** las plataformas CTF, pero muchos retos en formato OVA (VMWare/VBox) permiten extraer flags del disco sin resolverlos, lo que facilita automatizar su envío y invalida tokens y reputación. Solo sería viable en retos **hospedados** sin acceso al disco (p. ej. Hack The Box, TryHackMe, Offensive Security Proving Grounds, PortSwigger, PentesterLab), que no representan el ecosistema completo.
+>
+> **🇬🇧 English:** This project will not be continued. FlagChain aimed to **encompass all** CTF platforms, but many OVA-based challenges (VMWare/VBox) allow flag extraction from the disk without solving them, enabling automated submissions that undermine tokens and reputation. It would only be viable for **hosted** challenges with no disk access (e.g. Hack The Box, TryHackMe, Offensive Security Proving Grounds, PortSwigger, PentesterLab), which do not represent the full ecosystem.
+
+---
+
 ## 🇪🇸 Español
 
 **FlagChain** será una plataforma Web3 descentralizada para la publicación, resolución y verificación de retos CTF (Capture The Flag), con un sistema de reputación y rankings globales.  
